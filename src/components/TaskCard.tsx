@@ -21,7 +21,7 @@ export function TaskCard({ task }: TaskCardProps) {
   const extraCount = avatarCount - 2;
 
   return (
-    <div className="bg-card rounded-lg p-4 space-y-3 hover:bg-card/80 transition-colors cursor-pointer border border-border/50">
+    <div className="bg-card rounded-xl p-4 space-y-3 hover:shadow-lg hover:shadow-primary/5 transition-all cursor-pointer border border-border group">
       {/* Date and priority */}
       <div className="flex items-center justify-between">
         {task.dueDate ? (
@@ -39,7 +39,9 @@ export function TaskCard({ task }: TaskCardProps) {
       </div>
 
       {/* Title */}
-      <h3 className="text-sm font-medium text-foreground leading-snug">{task.title}</h3>
+      <h3 className="text-sm font-medium text-foreground leading-snug group-hover:text-primary transition-colors">
+        {task.title}
+      </h3>
 
       {/* Footer */}
       <div className="flex items-center justify-between pt-1">
@@ -51,7 +53,7 @@ export function TaskCard({ task }: TaskCardProps) {
               src={`https://i.pravatar.cc/150?img=${i + 10 + parseInt(task.id)}`}
               alt="Assignee"
               className={cn(
-                "w-7 h-7 rounded-full border-2 border-card",
+                "w-7 h-7 rounded-full border-2 border-card shadow-sm",
                 i > 0 && "-ml-2"
               )}
             />
@@ -66,13 +68,13 @@ export function TaskCard({ task }: TaskCardProps) {
         {/* Stats */}
         <div className="flex items-center gap-3 text-muted-foreground">
           {task.attachments > 0 && (
-            <div className="flex items-center gap-1 text-xs">
+            <div className="flex items-center gap-1 text-xs hover:text-foreground transition-colors">
               <Paperclip className="w-3.5 h-3.5" />
               <span>{task.attachments}</span>
             </div>
           )}
           {task.comments > 0 && (
-            <div className="flex items-center gap-1 text-xs">
+            <div className="flex items-center gap-1 text-xs hover:text-foreground transition-colors">
               <MessageSquare className="w-3.5 h-3.5" />
               <span>{task.comments}</span>
             </div>
