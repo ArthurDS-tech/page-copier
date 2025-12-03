@@ -15,14 +15,18 @@ const statusLabels: Record<ConversationStatus, string> = {
 
 interface ConversationCardProps {
   conversation: Conversation;
+  onClick?: () => void;
 }
 
-export function ConversationCard({ conversation }: ConversationCardProps) {
+export function ConversationCard({ conversation, onClick }: ConversationCardProps) {
   const clientAttendant = conversation.attendants.find(a => a.type === 'human' && !['Lucas', 'Mariana', 'Pedro', 'Carla'].includes(a.name));
   const serviceAttendants = conversation.attendants.filter(a => a.type === 'ai' || ['Lucas', 'Mariana', 'Pedro', 'Carla'].includes(a.name));
 
   return (
-    <div className="bg-card rounded-xl p-4 space-y-3 hover:shadow-lg hover:shadow-primary/5 transition-all cursor-pointer border border-border group">
+    <div 
+      onClick={onClick}
+      className="bg-card rounded-xl p-4 space-y-3 hover:shadow-lg hover:shadow-primary/5 transition-all cursor-pointer border border-border group"
+    >
       {/* Date and status */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">

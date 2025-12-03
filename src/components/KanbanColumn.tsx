@@ -1,10 +1,11 @@
 import { MoreHorizontal, Plus, Eye } from 'lucide-react';
 import { ConversationCard } from './ConversationCard';
-import { Column } from '@/types/kanban';
+import { Column, Conversation } from '@/types/kanban';
 import { cn } from '@/lib/utils';
 
 interface KanbanColumnProps {
   column: Column;
+  onConversationClick: (conversation: Conversation) => void;
 }
 
 const columnColors: Record<string, string> = {
@@ -21,7 +22,7 @@ const buttonLabels: Record<string, { icon: React.ElementType; label: string }> =
   resolved: { icon: Eye, label: 'Ver Todas' },
 };
 
-export function KanbanColumn({ column }: KanbanColumnProps) {
+export function KanbanColumn({ column, onConversationClick }: KanbanColumnProps) {
   const ButtonIcon = buttonLabels[column.id]?.icon || Plus;
   const buttonLabel = buttonLabels[column.id]?.label || 'Adicionar';
 
@@ -44,7 +45,11 @@ export function KanbanColumn({ column }: KanbanColumnProps) {
       {/* Conversations */}
       <div className="space-y-3">
         {column.conversations.map((conversation) => (
-          <ConversationCard key={conversation.id} conversation={conversation} />
+          <ConversationCard 
+            key={conversation.id} 
+            conversation={conversation}
+            onClick={() => onConversationClick(conversation)}
+          />
         ))}
         
         {/* Add button */}

@@ -1,73 +1,315 @@
-# Welcome to your Lovable project
+# Frontend - Orion.AI Dashboard
 
-## Project info
+Interface web moderna e responsiva para gerenciamento da plataforma Orion.AI de atendimento automatizado com IA.
 
-**URL**: https://lovable.dev/projects/1160bc43-41e3-4573-9e1b-7d840f7f675b
+## 🚀 Tecnologias
 
-## How can I edit this code?
+- **React 18** - Biblioteca UI
+- **TypeScript** - Tipagem estática
+- **Vite** - Build tool e dev server
+- **TailwindCSS** - Framework CSS utility-first
+- **React Router** - Roteamento
+- **Lucide React** - Ícones modernos
+- **Zustand** - Gerenciamento de estado
+- **React Query** - Gerenciamento de dados assíncronos
 
-There are several ways of editing your application.
+## 📁 Estrutura de Pastas
 
-**Use Lovable**
+```
+Frontend/
+├── src/
+│   ├── components/        # Componentes reutilizáveis
+│   │   ├── Header.tsx     # Cabeçalho da aplicação
+│   │   ├── Sidebar.tsx    # Menu lateral
+│   │   └── ui/            # Componentes UI base (shadcn/ui)
+│   ├── pages/             # Páginas da aplicação
+│   │   ├── Index.tsx      # Dashboard principal
+│   │   └── NotFound.tsx   # Página 404
+│   ├── hooks/             # Custom React hooks
+│   ├── lib/               # Utilitários e helpers
+│   ├── types/             # Definições TypeScript
+│   ├── data/              # Dados mock e constantes
+│   ├── App.tsx            # Componente raiz
+│   ├── main.tsx           # Entry point
+│   └── index.css          # Estilos globais
+├── public/                # Assets estáticos
+├── package.json           # Dependências
+├── vite.config.ts         # Configuração Vite
+├── tailwind.config.ts     # Configuração Tailwind
+└── tsconfig.json          # Configuração TypeScript
+```
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1160bc43-41e3-4573-9e1b-7d840f7f675b) and start prompting.
+## 🎨 Páginas Implementadas
 
-Changes made via Lovable will be committed automatically to this repo.
+### Dashboard Principal (`/`)
+**Arquivo:** `src/pages/Index.tsx`
 
-**Use your preferred IDE**
+**Funcionalidades:**
+- **Métricas em Tempo Real:**
+  - Mensagens utilizadas vs limite do plano
+  - Conversas ativas
+  - Tempo médio de resposta
+  - Taxa de satisfação do cliente
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Atividade Recente:**
+  - Lista de conversas recentes
+  - Status de cada conversa (Resolvido, Ativo, Escalado)
+  - Canal de origem (WhatsApp, Instagram)
+  - Timestamp das interações
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Status do Sistema:**
+  - Status da IA (Online/Offline)
+  - Conexão WhatsApp
+  - Conexão Instagram
+  - Fluxos ativos
+  - Agentes IA ativos
 
-Follow these steps:
+- **Top Intenções:**
+  - Análise das principais intenções dos clientes
+  - Gráficos de barras com percentuais
+  - Contagem de ocorrências
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- **Métricas de Performance:**
+  - Taxa de resolução por IA
+  - Taxa de conversão de leads
+  - Economia de tempo com automação
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+**Componentes Visuais:**
+- Cards informativos com ícones
+- Gráficos de progresso
+- Badges de status
+- Lista de atividades com hover effects
+- Layout responsivo (mobile-first)
 
-# Step 3: Install the necessary dependencies.
-npm i
+## ✅ Páginas Implementadas
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### 1. Dashboard (`/` ou `/dashboard`)
+**Arquivo:** `src/pages/Dashboard.tsx` e `src/pages/Index.tsx`
+
+**Funcionalidades:**
+- Métricas em tempo real (mensagens, conversas ativas, tempo médio, taxa de resolução)
+- Atividade recente com status e canais
+- Status do sistema (IA, WhatsApp, Instagram, Fluxos)
+- Cards informativos com ícones e badges
+- Layout responsivo
+
+### 2. Timeline (`/timeline`)
+**Arquivo:** `src/pages/Timeline.tsx`
+
+**Funcionalidades:**
+- Timeline visual de todas as atividades
+- Eventos em tempo real (mensagens, respostas IA, escalações, resoluções)
+- Estatísticas de eventos do dia
+- Filtros por tipo de evento
+- Indicadores visuais por tipo de atividade
+- Scroll infinito para histórico completo
+
+### 3. Calendar (`/calendar`)
+**Arquivo:** `src/pages/Calendar.tsx`
+
+**Funcionalidades:**
+- Calendário mensal interativo
+- Eventos do dia com detalhes
+- Próximos eventos na sidebar
+- Resumo de eventos (hoje, semana, mês)
+- Navegação entre meses
+- Indicadores visuais de dias com eventos
+- Informações de local e participantes
+
+### 4. Progress (`/progress`)
+**Arquivo:** `src/pages/Progress.tsx`
+
+**Funcionalidades:**
+- Metas e objetivos com progresso visual
+- Conquistas e badges
+- Progresso individual da equipe
+- Gráfico semanal de performance
+- Métricas de tendência
+- Comparação com metas estabelecidas
+- Top performers
+
+### 5. Forms (`/forms`)
+**Arquivo:** `src/pages/Forms.tsx`
+
+**Funcionalidades:**
+- Criador de templates de mensagens
+- Formulários personalizados
+- Preview em tempo real (mockup de celular)
+- Templates salvos e gerenciáveis
+- Respostas rápidas configuráveis
+- Variáveis dinâmicas
+- Configurações de ativação e personalização IA
+- Suporte para múltiplos canais
+
+## 🎯 Próximas Páginas a Implementar
+
+### 1. Analytics (`/analytics`)
+- Dashboards detalhados
+- Gráficos de tendências
+- Relatórios exportáveis
+- Análise de sentimento
+- Métricas de performance por período
+
+### 2. Treinamento IA (`/training`)
+- Upload de documentos (PDF, DOCX, TXT)
+- Upload de imagens para OCR
+- Gerenciamento de base de conhecimento
+- Configuração de tom de resposta
+- Templates de respostas
+
+### 3. Fluxos (`/flows`)
+- Flow Builder visual (drag & drop)
+- Criação de automações
+- Triggers e condições
+- Testes de fluxos
+- Logs de execução
+
+### 4. Agentes Corporativos (`/agents`)
+- Configuração de agentes especializados
+- Relatórios gerados pelos agentes
+- Agendamento de análises
+- Insights e recomendações
+
+### 5. CRM Inteligente (`/crm`)
+- Lista de contatos
+- Perfis de clientes
+- Scoring automático
+- Tags inteligentes
+- Histórico completo de interações
+
+### 6. Configurações (`/settings`)
+- Configurações da conta
+- Gerenciamento de usuários
+- Integrações (WhatsApp, Instagram)
+- Configurações de IA
+- Limites e planos
+
+## 🔧 Como Executar
+
+### Desenvolvimento
+```bash
+cd Frontend
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Acesse: `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Build para Produção
+```bash
+npm run build
+npm run preview
+```
 
-**Use GitHub Codespaces**
+### Lint e Type Check
+```bash
+npm run lint
+npm run type-check
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🎨 Design System
 
-## What technologies are used for this project?
+### Cores Principais
+- **Primary (Indigo):** `#4F46E5` - Ações principais, links
+- **Success (Green):** `#10B981` - Sucesso, confirmações
+- **Warning (Yellow):** `#F59E0B` - Avisos, atenção
+- **Error (Red):** `#EF4444` - Erros, ações destrutivas
+- **Info (Blue):** `#3B82F6` - Informações
 
-This project is built with:
+### Tipografia
+- **Font Family:** Inter (Google Fonts)
+- **Headings:** Font weight 600-700
+- **Body:** Font weight 400
+- **Small:** Font weight 500
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Espaçamento
+- Seguindo escala Tailwind: 4px, 8px, 12px, 16px, 24px, 32px, 48px, 64px
 
-## How can I deploy this project?
+### Componentes UI
+Utilizando **shadcn/ui** para componentes base:
+- Button
+- Card
+- Dialog
+- Dropdown
+- Input
+- Select
+- Toast
+- Tooltip
+- Badge
+- Avatar
+- Tabs
+- Table
 
-Simply open [Lovable](https://lovable.dev/projects/1160bc43-41e3-4573-9e1b-7d840f7f675b) and click on Share -> Publish.
+## 📱 Responsividade
 
-## Can I connect a custom domain to my Lovable project?
+O dashboard é totalmente responsivo com breakpoints:
+- **Mobile:** < 640px
+- **Tablet:** 640px - 1024px
+- **Desktop:** > 1024px
 
-Yes, you can!
+## 🔐 Autenticação
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Integração com Supabase Auth:
+- Login com email/senha
+- Registro de novos usuários
+- Recuperação de senha
+- Sessões persistentes
+- Proteção de rotas
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## 🌐 API Integration
+
+Todas as chamadas de API serão feitas para os microserviços:
+- **Auth Service:** `http://localhost:8001`
+- **Message Processor:** `http://localhost:8002`
+- **LLM Engine:** `http://localhost:8003`
+- **Analytics:** `http://localhost:8008`
+- **Smart CRM:** `http://localhost:8009`
+
+## 📊 Estado Global
+
+Gerenciamento de estado com Zustand:
+- User state
+- Tenant state
+- Conversations state
+- Notifications state
+- UI state (sidebar, modals)
+
+## 🧪 Testes (A Implementar)
+
+```bash
+npm run test          # Unit tests
+npm run test:e2e      # E2E tests com Playwright
+npm run test:coverage # Coverage report
+```
+
+## 🚀 Deploy
+
+### Vercel (Recomendado)
+```bash
+vercel --prod
+```
+
+### Docker
+```bash
+docker build -t orion-frontend .
+docker run -p 3000:3000 orion-frontend
+```
+
+## 📝 Convenções de Código
+
+- **Componentes:** PascalCase (`DashboardCard.tsx`)
+- **Hooks:** camelCase com prefixo `use` (`useAuth.ts`)
+- **Utils:** camelCase (`formatDate.ts`)
+- **Tipos:** PascalCase com sufixo `Type` ou interface (`UserType`, `IUser`)
+- **Constantes:** UPPER_SNAKE_CASE (`API_BASE_URL`)
+
+## 🤝 Contribuindo
+
+1. Crie uma branch para sua feature: `git checkout -b feature/nova-funcionalidade`
+2. Commit suas mudanças: `git commit -m 'feat: adiciona nova funcionalidade'`
+3. Push para a branch: `git push origin feature/nova-funcionalidade`
+4. Abra um Pull Request
+
+## 📄 Licença
+
+Propriedade da Orion.AI - Todos os direitos reservados
