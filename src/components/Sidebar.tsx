@@ -1,15 +1,15 @@
-import { Home, CheckCircle, Inbox, BarChart3, FileText, Calendar, Settings, Plus, PanelLeftClose, PanelLeft, ChevronDown } from 'lucide-react';
+import { LayoutDashboard, Inbox, MessageSquare, BarChart3, Users, GitBranch, Settings, Plus, PanelLeftClose, PanelLeft, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { navItems, projects } from '@/data/mockData';
+import { navItems, channels } from '@/data/mockData';
 import { useSidebar } from '@/hooks/useSidebar';
 
 const iconMap: Record<string, React.ElementType> = {
-  'home': Home,
-  'check-circle': CheckCircle,
+  'layout-dashboard': LayoutDashboard,
   'inbox': Inbox,
+  'message-square': MessageSquare,
   'bar-chart': BarChart3,
-  'file-text': FileText,
-  'calendar': Calendar,
+  'users': Users,
+  'git-branch': GitBranch,
   'settings': Settings,
 };
 
@@ -39,7 +39,7 @@ export function Sidebar() {
             "font-semibold text-foreground whitespace-nowrap overflow-hidden transition-all duration-300",
             isCollapsed ? "w-0 opacity-0" : "w-auto opacity-100"
           )}>
-            TaskFlow
+            Orion.AI
           </span>
         </div>
         <button 
@@ -71,8 +71,8 @@ export function Sidebar() {
             "flex-1 min-w-0 overflow-hidden transition-all duration-300",
             isCollapsed ? "w-0 opacity-0" : "w-auto opacity-100"
           )}>
-            <p className="text-sm font-medium text-foreground truncate">Nancy Martino</p>
-            <p className="text-xs text-muted-foreground truncate">Designer</p>
+            <p className="text-sm font-medium text-foreground truncate">Admin Loja ABC</p>
+            <p className="text-xs text-muted-foreground truncate">Gerente</p>
           </div>
           {!isCollapsed && <ChevronDown className="w-4 h-4 text-muted-foreground flex-shrink-0" />}
         </div>
@@ -89,7 +89,7 @@ export function Sidebar() {
               className={cn(
                 "flex items-center rounded-xl text-sm font-medium transition-all duration-200 group relative",
                 "text-sidebar-foreground hover:text-foreground hover:bg-sidebar-accent",
-                item.id === 'home' && "bg-sidebar-accent text-foreground",
+                item.id === 'dashboard' && "bg-sidebar-accent text-foreground",
                 isCollapsed ? "justify-center px-2 py-2.5" : "gap-3 px-3 py-2.5"
               )}
               title={isCollapsed ? item.label : undefined}
@@ -115,7 +115,7 @@ export function Sidebar() {
           );
         })}
 
-        {/* Projects section */}
+        {/* Channels section */}
         <div className={cn(
           "pt-6 transition-all duration-300",
           isCollapsed && "pt-4"
@@ -123,7 +123,7 @@ export function Sidebar() {
           {!isCollapsed && (
             <div className="flex items-center justify-between px-3 mb-3">
               <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                Projects
+                Canais
               </span>
               <button className="w-6 h-6 rounded-md hover:bg-sidebar-accent flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
                 <Plus className="w-4 h-4" />
@@ -138,28 +138,28 @@ export function Sidebar() {
           )}
           
           <div className="space-y-1">
-            {projects.map((project) => (
+            {channels.map((channel) => (
               <a
-                key={project.id}
+                key={channel.id}
                 href="#"
                 className={cn(
                   "flex items-center rounded-xl text-sm font-medium transition-all duration-200",
-                  project.isActive
+                  channel.isActive
                     ? "text-foreground bg-sidebar-accent shadow-sm"
                     : "text-sidebar-foreground hover:text-foreground hover:bg-sidebar-accent",
                   isCollapsed ? "justify-center px-2 py-2.5" : "gap-3 px-3 py-2.5"
                 )}
-                title={isCollapsed ? project.name : undefined}
+                title={isCollapsed ? channel.name : undefined}
               >
                 <span className={cn(
                   "w-2 h-2 rounded-full flex-shrink-0",
-                  project.isActive ? "bg-primary" : "bg-muted-foreground/50"
+                  channel.isActive ? "bg-success" : "bg-muted-foreground/50"
                 )}></span>
                 <span className={cn(
                   "whitespace-nowrap overflow-hidden transition-all duration-300",
                   isCollapsed ? "w-0 opacity-0" : "w-auto opacity-100"
                 )}>
-                  {project.name}
+                  {channel.name}
                 </span>
               </a>
             ))}
@@ -170,11 +170,11 @@ export function Sidebar() {
       {/* Footer */}
       {!isCollapsed && (
         <div className="p-3 border-t border-sidebar-border animate-fade-in">
-          <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-warning/10 border border-primary/20">
-            <p className="text-xs font-medium text-foreground mb-1">Upgrade to Pro</p>
-            <p className="text-xs text-muted-foreground mb-3">Get unlimited projects and features</p>
+          <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20">
+            <p className="text-xs font-medium text-foreground mb-1">Upgrade para Pro</p>
+            <p className="text-xs text-muted-foreground mb-3">Desbloqueie IA ilimitada e mais recursos</p>
             <button className="w-full py-2 text-xs font-semibold text-primary-foreground bg-primary rounded-lg hover:bg-primary/90 transition-colors">
-              Upgrade Now
+              Fazer Upgrade
             </button>
           </div>
         </div>

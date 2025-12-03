@@ -1,5 +1,5 @@
-import { MoreHorizontal, Plus } from 'lucide-react';
-import { TaskCard } from './TaskCard';
+import { MoreHorizontal, Plus, Eye } from 'lucide-react';
+import { ConversationCard } from './ConversationCard';
 import { Column } from '@/types/kanban';
 import { cn } from '@/lib/utils';
 
@@ -8,13 +8,23 @@ interface KanbanColumnProps {
 }
 
 const columnColors: Record<string, string> = {
-  backlog: 'bg-muted-foreground',
-  todo: 'bg-primary',
-  progress: 'bg-warning',
-  done: 'bg-success',
+  new: 'bg-warning',
+  'in-progress': 'bg-primary',
+  escalated: 'bg-destructive',
+  resolved: 'bg-success',
+};
+
+const buttonLabels: Record<string, { icon: React.ElementType; label: string }> = {
+  new: { icon: Plus, label: 'Nova Conversa' },
+  'in-progress': { icon: Plus, label: 'Adicionar Conversa' },
+  escalated: { icon: Plus, label: 'Adicionar Conversa' },
+  resolved: { icon: Eye, label: 'Ver Todas' },
 };
 
 export function KanbanColumn({ column }: KanbanColumnProps) {
+  const ButtonIcon = buttonLabels[column.id]?.icon || Plus;
+  const buttonLabel = buttonLabels[column.id]?.label || 'Adicionar';
+
   return (
     <div className="flex-shrink-0 w-80">
       {/* Column header */}
@@ -31,16 +41,16 @@ export function KanbanColumn({ column }: KanbanColumnProps) {
         </button>
       </div>
 
-      {/* Tasks */}
+      {/* Conversations */}
       <div className="space-y-3">
-        {column.tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
+        {column.conversations.map((conversation) => (
+          <ConversationCard key={conversation.id} conversation={conversation} />
         ))}
         
-        {/* Add task button */}
+        {/* Add button */}
         <button className="w-full flex items-center justify-center gap-2 py-3 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-xl transition-all border-2 border-dashed border-border hover:border-primary/30">
-          <Plus className="w-4 h-4" />
-          <span>Add Task</span>
+          <ButtonIcon className="w-4 h-4" />
+          <span>{buttonLabel}</span>
         </button>
       </div>
     </div>
