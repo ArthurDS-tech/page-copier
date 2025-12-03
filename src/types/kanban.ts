@@ -1,23 +1,39 @@
-export type Priority = 'high' | 'medium' | 'low' | 'done';
+export type ConversationStatus = 'new' | 'ai-responding' | 'waiting-client' | 'complex' | 'urgent' | 'waiting' | 'resolved';
 
-export interface Task {
+export type Sentiment = 'positive' | 'negative' | 'neutral';
+
+export type AttendantType = 'ai' | 'human';
+
+export interface Attendant {
   id: string;
-  title: string;
-  dueDate?: string;
-  priority: Priority;
-  assignees: string[];
-  attachments: number;
-  comments: number;
+  name: string;
+  avatar?: string;
+  type: AttendantType;
+}
+
+export interface Conversation {
+  id: string;
+  clientName: string;
+  subject: string;
+  date: string;
+  status: ConversationStatus;
+  messageCount: number;
+  attendants: Attendant[];
+  assignedTo?: string;
+  timeElapsed?: string;
+  sentiment?: Sentiment;
+  isUrgent?: boolean;
+  isHighPriority?: boolean;
 }
 
 export interface Column {
   id: string;
   title: string;
   count: number;
-  tasks: Task[];
+  conversations: Conversation[];
 }
 
-export interface Project {
+export interface Channel {
   id: string;
   name: string;
   isActive?: boolean;
